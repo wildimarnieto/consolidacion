@@ -88,6 +88,7 @@ public class LIDERES extends javax.swing.JPanel {
     jLabel33 = new javax.swing.JLabel();
     jTextField24 = new javax.swing.JTextField();
     jToggleButton2 = new javax.swing.JToggleButton();
+    jButton2 = new javax.swing.JButton();
     jPanel3 = new javax.swing.JPanel();
     jLabel29 = new javax.swing.JLabel();
     jLabel30 = new javax.swing.JLabel();
@@ -95,6 +96,7 @@ public class LIDERES extends javax.swing.JPanel {
     jLabel31 = new javax.swing.JLabel();
     jTextField22 = new javax.swing.JTextField();
     jButton1 = new javax.swing.JButton();
+    jButton3 = new javax.swing.JButton();
 
     jToggleButton1.setText("CREAR");
 
@@ -349,6 +351,8 @@ public class LIDERES extends javax.swing.JPanel {
 
     jToggleButton2.setText("MODIFICAR");
 
+    jButton2.setText("BUSCAR");
+
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -369,7 +373,9 @@ public class LIDERES extends javax.swing.JPanel {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(356, 356, 356))))
+            .addGap(49, 49, 49)
+            .addComponent(jButton2)
+            .addGap(234, 234, 234))))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
         .addContainerGap(519, Short.MAX_VALUE)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,11 +434,12 @@ public class LIDERES extends javax.swing.JPanel {
       .addGroup(jPanel2Layout.createSequentialGroup()
         .addGap(73, 73, 73)
         .addComponent(jLabel16)
-        .addGap(42, 42, 42)
+        .addGap(41, 41, 41)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jLabel14))
-        .addGap(25, 25, 25)
+          .addComponent(jLabel14)
+          .addComponent(jButton2))
+        .addGap(23, 23, 23)
         .addComponent(jLabel28)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -510,6 +517,8 @@ public class LIDERES extends javax.swing.JPanel {
 
     jButton1.setText("ELIMINAR");
 
+    jButton3.setText("BUSCAR");
+
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
@@ -527,22 +536,25 @@ public class LIDERES extends javax.swing.JPanel {
             .addGap(139, 139, 139)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addComponent(jTextField21)
-              .addComponent(jTextField22, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
+              .addComponent(jTextField22, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+            .addGap(43, 43, 43)
+            .addComponent(jButton3))
           .addGroup(jPanel3Layout.createSequentialGroup()
             .addGap(401, 401, 401)
             .addComponent(jButton1)))
-        .addContainerGap(480, Short.MAX_VALUE))
+        .addContainerGap(364, Short.MAX_VALUE))
     );
     jPanel3Layout.setVerticalGroup(
       jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel3Layout.createSequentialGroup()
         .addGap(43, 43, 43)
         .addComponent(jLabel29)
-        .addGap(49, 49, 49)
+        .addGap(48, 48, 48)
         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel30)
-          .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(30, 30, 30)
+          .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButton3))
+        .addGap(28, 28, 28)
         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel31)
           .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -624,6 +636,8 @@ public class LIDERES extends javax.swing.JPanel {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton jButton1;
+  private javax.swing.JButton jButton2;
+  private javax.swing.JButton jButton3;
   private javax.swing.JComboBox<String> jComboBox1;
   private javax.swing.JComboBox<String> jComboBox2;
   private javax.swing.JComboBox<String> jComboBox3;
