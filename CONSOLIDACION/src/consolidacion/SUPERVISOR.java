@@ -11,12 +11,12 @@ import java.awt.BorderLayout;
  *
  * @author USUARIO
  */
-public class LIDERES extends javax.swing.JPanel {
+public class SUPERVISOR extends javax.swing.JPanel {
 
   /**
    * Creates new form LIDER
    */
-  public LIDERES() {
+  public SUPERVISOR() {
     initComponents();
   }
 
@@ -146,7 +146,7 @@ public class LIDERES extends javax.swing.JPanel {
 
     jLabel12.setText("CORREO ELECTRONICO");
 
-    jLabel1.setText("CREAR LIDER");
+    jLabel1.setText("CREAR SUPERVISOR");
 
     jLabel13.setText("ASISTE GRUPO?");
 
@@ -231,11 +231,11 @@ public class LIDERES extends javax.swing.JPanel {
               .addComponent(correo)
               .addComponent(asignado)))
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(498, 498, 498)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(488, 488, 488)
-            .addComponent(jToggleButton1)))
+            .addComponent(jToggleButton1))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(498, 498, 498)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap(415, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
@@ -296,7 +296,7 @@ public class LIDERES extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel32)
               .addComponent(asignado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton4)
@@ -305,11 +305,12 @@ public class LIDERES extends javax.swing.JPanel {
         .addGap(41, 41, 41))
     );
 
-    jTabbedPane1.addTab("CREAR LIDER", jPanel1);
+    jTabbedPane1.addTab("CREAR SUPERVISOR", jPanel1);
 
     jLabel14.setText("CEDULA");
 
-    jLabel16.setText("MODIFICAR LIDER");
+    jLabel16.setFont(new java.awt.Font("Wide Latin", 1, 24)); // NOI18N
+    jLabel16.setText("MODIFICAR SUPERVISOR");
 
     mcedula.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,7 +389,7 @@ public class LIDERES extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
               .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel33)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(masignado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel14)
@@ -398,14 +399,13 @@ public class LIDERES extends javax.swing.JPanel {
             .addComponent(jButton2)
             .addGap(234, 234, 234))))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-        .addContainerGap(519, Short.MAX_VALUE)
-        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(456, 456, 456))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-            .addComponent(jToggleButton2)
-            .addGap(504, 504, 504))))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jToggleButton2)
+        .addGap(504, 504, 504))
+      .addGroup(jPanel2Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel2Layout.createSequentialGroup()
           .addGap(356, 356, 356)
@@ -453,16 +453,16 @@ public class LIDERES extends javax.swing.JPanel {
     jPanel2Layout.setVerticalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel2Layout.createSequentialGroup()
-        .addGap(73, 73, 73)
+        .addContainerGap()
         .addComponent(jLabel16)
-        .addGap(41, 41, 41)
+        .addGap(103, 103, 103)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(mcedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel14)
           .addComponent(jButton2))
         .addGap(23, 23, 23)
         .addComponent(jLabel28)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel33)
           .addComponent(masignado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -512,12 +512,12 @@ public class LIDERES extends javax.swing.JPanel {
           .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(mcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel27))
-          .addContainerGap(81, Short.MAX_VALUE)))
+          .addContainerGap(116, Short.MAX_VALUE)))
     );
 
-    jTabbedPane1.addTab("MODIFICAR LIDER", jPanel2);
+    jTabbedPane1.addTab("MODIFICAR SUPERVISOR", jPanel2);
 
-    jLabel29.setText("ELIMINAR LIDER ");
+    jLabel29.setText("ELIMINAR SUPERVISOR ");
 
     jLabel30.setText("CEDULA");
 
@@ -581,10 +581,10 @@ public class LIDERES extends javax.swing.JPanel {
           .addComponent(enombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(38, 38, 38)
         .addComponent(jButton1)
-        .addContainerGap(329, Short.MAX_VALUE))
+        .addContainerGap(364, Short.MAX_VALUE))
     );
 
-    jTabbedPane1.addTab("ELIMINAR LIDER", jPanel3);
+    jTabbedPane1.addTab("ELIMINAR  SUPERVISOR", jPanel3);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
@@ -600,7 +600,7 @@ public class LIDERES extends javax.swing.JPanel {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(33, Short.MAX_VALUE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     jTabbedPane1.getAccessibleContext().setAccessibleName("CREAR LIDER");
