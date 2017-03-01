@@ -6,13 +6,23 @@
 package consolidacion;
 
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author USUARIO
  */
 public class LIDERES extends javax.swing.JPanel {
-
+private Connection connection=null;
+private ResultSet rs= null;
+private Statement s=null;
   /**
    * Creates new form LIDER
    */
@@ -36,7 +46,6 @@ public class LIDERES extends javax.swing.JPanel {
     jLabel4 = new javax.swing.JLabel();
     apellidos = new javax.swing.JTextField();
     jLabel5 = new javax.swing.JLabel();
-    estado_civil = new javax.swing.JTextField();
     jLabel6 = new javax.swing.JLabel();
     direccion = new javax.swing.JTextField();
     jLabel7 = new javax.swing.JLabel();
@@ -61,6 +70,7 @@ public class LIDERES extends javax.swing.JPanel {
     jLabel32 = new javax.swing.JLabel();
     asignado = new javax.swing.JTextField();
     jButton4 = new javax.swing.JButton();
+    estado = new javax.swing.JComboBox<>();
     jPanel2 = new javax.swing.JPanel();
     jLabel14 = new javax.swing.JLabel();
     jLabel16 = new javax.swing.JLabel();
@@ -102,6 +112,11 @@ public class LIDERES extends javax.swing.JPanel {
     jButton3 = new javax.swing.JButton();
 
     jToggleButton1.setText("CREAR");
+    jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jToggleButton1ActionPerformed(evt);
+      }
+    });
 
     jLabel4.setText("APELLIDOS ");
 
@@ -173,6 +188,8 @@ public class LIDERES extends javax.swing.JPanel {
       }
     });
 
+    estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -180,9 +197,10 @@ public class LIDERES extends javax.swing.JPanel {
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(43, 43, 43)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(298, 298, 298)
+                .addGap(259, 259, 259)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -195,18 +213,12 @@ public class LIDERES extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addComponent(jLabel2))
                       .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                      .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                      .addGap(18, 18, 18)))
-                  .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                      .addComponent(jLabel13)
-                      .addComponent(jLabel15)
-                      .addComponent(jLabel32))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
-              .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jButton4)))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(jLabel13)
+                  .addComponent(jLabel15)
+                  .addComponent(jLabel32)))
+              .addComponent(jButton4))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel9)
@@ -221,22 +233,22 @@ public class LIDERES extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(año, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addComponent(barrio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(direccion)
               .addComponent(cedula)
               .addComponent(nombre)
               .addComponent(apellidos)
-              .addComponent(estado_civil)
               .addComponent(grupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(celular)
               .addComponent(correo)
-              .addComponent(asignado)))
+              .addComponent(asignado)
+              .addComponent(direccion, javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(498, 498, 498)
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(488, 488, 488)
             .addComponent(jToggleButton1)))
-        .addContainerGap(415, Short.MAX_VALUE))
+        .addContainerGap(349, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,24 +256,22 @@ public class LIDERES extends javax.swing.JPanel {
         .addGap(27, 27, 27)
         .addComponent(jLabel1)
         .addGap(38, 38, 38)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel4)
-            .addGap(18, 18, 18)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(estado_civil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabel5)))
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabel2))
-            .addGap(26, 26, 26)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabel3))
-            .addGap(24, 24, 24)
-            .addComponent(apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(32, 32, 32)))
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel2))
+        .addGap(26, 26, 26)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel3))
+        .addGap(24, 24, 24)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel4))
+        .addGap(18, 18, 18)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel5)
+          .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(9, 9, 9)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel6))
@@ -462,7 +472,7 @@ public class LIDERES extends javax.swing.JPanel {
           .addComponent(jButton2))
         .addGap(23, 23, 23)
         .addComponent(jLabel28)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel33)
           .addComponent(masignado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -512,7 +522,7 @@ public class LIDERES extends javax.swing.JPanel {
           .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(mcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel27))
-          .addContainerGap(81, Short.MAX_VALUE)))
+          .addContainerGap(96, Short.MAX_VALUE)))
     );
 
     jTabbedPane1.addTab("MODIFICAR LIDER", jPanel2);
@@ -581,7 +591,7 @@ public class LIDERES extends javax.swing.JPanel {
           .addComponent(enombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(38, 38, 38)
         .addComponent(jButton1)
-        .addContainerGap(329, Short.MAX_VALUE))
+        .addContainerGap(344, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("ELIMINAR LIDER", jPanel3);
@@ -600,12 +610,32 @@ public class LIDERES extends javax.swing.JPanel {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(33, Short.MAX_VALUE))
+        .addContainerGap(18, Short.MAX_VALUE))
     );
 
     jTabbedPane1.getAccessibleContext().setAccessibleName("CREAR LIDER");
   }// </editor-fold>//GEN-END:initComponents
+public void conexion()
+{
+    if(connection !=null){
+		return;
+	}
+	
+	String url ="jdbc:postgresql://localhost:5433/CONSOLIDACION";
+	String password ="ideafix";
+	try{
+	   Class.forName("org.postgresql.Driver");
+	   
+	   connection=DriverManager.getConnection(url,"postgres",password);
+	   
+	   if(connection!=null){
+		   System.out.println("Conectando a Base de Datos...");
+	   }
+	} catch (Exception e){
+		System.out.println("Problemas de Conexion");
+	}
 
+}
   private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_cedulaActionPerformed
@@ -669,6 +699,37 @@ setLayout(new BorderLayout());
 	setSize(1000,1000);      // TODO add your handling code here:
   }//GEN-LAST:event_jButton4ActionPerformed
 
+  private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+conexion();
+  String c = cedula.getText();
+  String n = nombre.getText();
+  String a = apellidos.getText();
+  Object est = estado.getSelectedItem(); 
+  String es = String.valueOf(est);
+  String di = direccion.getText();
+  Object ba = barrio.getSelectedItem(); 
+  String b = String.valueOf(ba); 
+  String d = dia.getText();
+  String m = mes.getText();
+  String añ = año.getText();
+  String co = correo.getText();
+  Object gru = barrio.getSelectedItem(); 
+  String gr = String.valueOf(gru);
+  String  ce = celular.getText();
+	try{
+     s=connection.createStatement();
+    int z=s.executeUpdate("INSERT INTO lider  Values('"+c+"','"+n+"','"+a+"','"+es+"','"+di+"','"+b+"','"+añ+"-"+m+"-"+d+"','"+co+"','"+gr+"','"+ce+"')");
+	 if(z==1){
+	   System.out.println("Se agrego el registro de manera exitosa");
+	  }else{
+	   System.out.println("Ocurrio un problema al agregar el registro");
+	  }
+    }catch (Exception e){
+		System.out.println("Error de conexion");
+	}
+// TODO add your handling code here:
+  }//GEN-LAST:event_jToggleButton1ActionPerformed
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField apellidos;
@@ -682,7 +743,7 @@ setLayout(new BorderLayout());
   private javax.swing.JTextField direccion;
   private javax.swing.JTextField ecedula;
   private javax.swing.JTextField enombre;
-  private javax.swing.JTextField estado_civil;
+  private javax.swing.JComboBox<String> estado;
   private javax.swing.JComboBox<String> grupo;
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
