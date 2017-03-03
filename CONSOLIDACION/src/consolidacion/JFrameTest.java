@@ -25,9 +25,7 @@ import javax.swing.JPanel;
  * @author USUARIO
  */
 public class JFrameTest extends JFrame {
-  private Connection connection=null;
-private ResultSet rs= null;
-private Statement s=null;
+  
     MENU menu;
   private Container cp;
   
@@ -55,26 +53,7 @@ private Statement s=null;
 
 	
     }
-    public void realizaConexion(){
-            if(connection !=null){
-		return;
-	}
-	
-	String url ="jdbc:postgresql://localhost:5433/CONSOLIDACION";
-	String password ="ideafix";
-	try{
-	  
-	   Class.forName("org.postgresql.Driver");
-	   
-	   connection=DriverManager.getConnection(url,"postgres",password);
-	   
-	   if(connection!=null){
-		   System.out.println("Conectando a Base de Datos...");
-	   }
-	} catch (Exception e){
-		System.out.println("Problemas de Conexion"+e.getMessage());
-	}
-}
+    
     public static void main(String[]args) {
             new JFrameTest();
 	  

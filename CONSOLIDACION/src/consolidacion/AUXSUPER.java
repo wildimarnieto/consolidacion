@@ -6,19 +6,46 @@
 package consolidacion;
 
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
  * @author USUARIO
  */
 public class AUXSUPER extends javax.swing.JPanel {
-
+private Connection connection=null;
+private ResultSet rs= null;
+private Statement s=null;
   /**
    * Creates new form LIDER
    */
   public AUXSUPER() {
     initComponents();
   }
+  public void conexion()
+{
+    if(connection !=null){
+		return;
+	}
+	
+	String url ="jdbc:postgresql://localhost:5433/CONSOLIDACION";
+	String password ="ideafix";
+	try{
+	   Class.forName("org.postgresql.Driver");
+	   
+	   connection=DriverManager.getConnection(url,"postgres",password);
+	   
+	   if(connection!=null){
+		   System.out.println("Conectando a Base de Datos...");
+	   }
+	} catch (Exception e){
+		System.out.println("Problemas de Conexion");
+	}
+
+}
 
   /**
    * This method is called from within the constructor to initialize the form.
@@ -36,7 +63,6 @@ public class AUXSUPER extends javax.swing.JPanel {
     jLabel4 = new javax.swing.JLabel();
     apellidos = new javax.swing.JTextField();
     jLabel5 = new javax.swing.JLabel();
-    estado_civil = new javax.swing.JTextField();
     jLabel6 = new javax.swing.JLabel();
     direccion = new javax.swing.JTextField();
     jLabel7 = new javax.swing.JLabel();
@@ -61,6 +87,7 @@ public class AUXSUPER extends javax.swing.JPanel {
     jLabel32 = new javax.swing.JLabel();
     asignado = new javax.swing.JTextField();
     jButton4 = new javax.swing.JButton();
+    estado = new javax.swing.JComboBox<>();
     jPanel2 = new javax.swing.JPanel();
     jLabel14 = new javax.swing.JLabel();
     jLabel16 = new javax.swing.JLabel();
@@ -102,6 +129,11 @@ public class AUXSUPER extends javax.swing.JPanel {
     jButton3 = new javax.swing.JButton();
 
     jToggleButton1.setText("CREAR");
+    jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jToggleButton1ActionPerformed(evt);
+      }
+    });
 
     jLabel4.setText("APELLIDOS ");
 
@@ -173,6 +205,8 @@ public class AUXSUPER extends javax.swing.JPanel {
       }
     });
 
+    estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -225,11 +259,11 @@ public class AUXSUPER extends javax.swing.JPanel {
               .addComponent(cedula)
               .addComponent(nombre)
               .addComponent(apellidos)
-              .addComponent(estado_civil)
               .addComponent(grupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(celular)
               .addComponent(correo)
-              .addComponent(asignado)))
+              .addComponent(asignado)
+              .addComponent(estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(488, 488, 488)
             .addComponent(jToggleButton1))
@@ -248,9 +282,7 @@ public class AUXSUPER extends javax.swing.JPanel {
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addComponent(jLabel4)
             .addGap(18, 18, 18)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(estado_civil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabel5)))
+            .addComponent(jLabel5))
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +293,9 @@ public class AUXSUPER extends javax.swing.JPanel {
               .addComponent(jLabel3))
             .addGap(24, 24, 24)
             .addComponent(apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(32, 32, 32)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(6, 6, 6)))
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel6))
@@ -669,6 +703,39 @@ setLayout(new BorderLayout());
 	setSize(1000,1000);      // TODO add your handling code here:
   }//GEN-LAST:event_jButton4ActionPerformed
 
+  private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+conexion();
+  String c = cedula.getText();
+  String n = nombre.getText();
+  String a = apellidos.getText();
+  Object est = estado.getSelectedItem(); 
+  String es = String.valueOf(est);
+  String di = direccion.getText();
+  Object ba = barrio.getSelectedItem(); 
+  String b = String.valueOf(ba); 
+  String d = dia.getText();
+  String m = mes.getText();
+  String añ = año.getText();
+  String co = correo.getText();
+  Object gru = grupo.getSelectedItem(); 
+  String gr = String.valueOf(gru);
+  String  ce = celular.getText();
+	try{
+     s=connection.createStatement();
+    int z=s.executeUpdate("INSERT INTO aux_super  Values('"+c+"','"+n+"','"+a+"','"+es+"','"+di+"','"+b+"','"+añ+"/"+m+"/"+d+"','"+co+"','"+gr+"','"+ce+"')");
+	 if(z==1){
+	   System.out.println("Se agrego el registro de manera exitosa");
+	  }else{
+	   System.out.println("Ocurrio un problema al agregar el registro");
+	  }
+    
+	}catch (Exception e){
+		System.out.println("Error de conexion en en el registro");
+	}
+  
+  // TODO add your handling code here:
+  }//GEN-LAST:event_jToggleButton1ActionPerformed
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField apellidos;
@@ -682,7 +749,7 @@ setLayout(new BorderLayout());
   private javax.swing.JTextField direccion;
   private javax.swing.JTextField ecedula;
   private javax.swing.JTextField enombre;
-  private javax.swing.JTextField estado_civil;
+  private javax.swing.JComboBox<String> estado;
   private javax.swing.JComboBox<String> grupo;
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
