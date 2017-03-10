@@ -4,13 +4,23 @@
  * and open the template in the editor.
  */
 package consolidacion;
-
+import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author USUARIO
  */
-public class visita extends javax.swing.JFrame {
-
+public class visita extends javax.swing.JPanel {
+private Connection connection=null;
+private ResultSet rs= null;
+private Statement s=null;
   /**
    * Creates new form visita
    */
@@ -27,57 +37,211 @@ public class visita extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    jLabel1 = new javax.swing.JLabel();
+    ncelular = new javax.swing.JTextField();
+    jLabel2 = new javax.swing.JLabel();
+    tipo = new javax.swing.JComboBox<>();
+    jLabel3 = new javax.swing.JLabel();
+    jLabel4 = new javax.swing.JLabel();
+    jLabel5 = new javax.swing.JLabel();
+    dia = new javax.swing.JTextField();
+    jLabel6 = new javax.swing.JLabel();
+    mes = new javax.swing.JTextField();
+    jLabel7 = new javax.swing.JLabel();
+    año = new javax.swing.JTextField();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    peticion = new javax.swing.JTextArea();
+    jButton1 = new javax.swing.JButton();
+    jLabel8 = new javax.swing.JLabel();
+    hora = new javax.swing.JTextField();
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
+    jLabel1.setText("NUMERO DE CELULAR DEL NUEVO");
+
+    jLabel2.setText("TIPO DE CONTACTO");
+
+    tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VISITA", "LLAMADA", "ESCUELA" }));
+
+    jLabel3.setText("PETICION");
+
+    jLabel4.setText("FECHA");
+
+    jLabel5.setText("DIA");
+
+    jLabel6.setText("MES");
+
+    jLabel7.setText("AÑO");
+
+    peticion.setColumns(20);
+    peticion.setRows(5);
+    jScrollPane1.setViewportView(peticion);
+
+    jButton1.setText("REGISTRAR VISITA");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
+
+    jLabel8.setText("HORA");
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+    this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
+      .addGroup(layout.createSequentialGroup()
+        .addGap(22, 22, 22)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(ncelular, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(52, 52, 52)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(106, 106, 106)
+                .addComponent(jLabel3)
+                .addGap(254, 254, 254)
+                .addComponent(jLabel4))
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addGroup(layout.createSequentialGroup()
+                    .addComponent(jLabel5)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel6)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(jLabel8))
+                .addGap(13, 13, 13)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jLabel7))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(536, 536, 536)
+            .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(año, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+        .addGap(96, 96, 96))
+      .addGroup(layout.createSequentialGroup()
+        .addGap(365, 365, 365)
+        .addComponent(jButton1)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 300, Short.MAX_VALUE)
+      .addGroup(layout.createSequentialGroup()
+        .addGap(77, 77, 77)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel1)
+          .addComponent(jLabel2)
+          .addComponent(jLabel3)
+          .addComponent(jLabel4))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(ncelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel5)
+              .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel6)
+              .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel7)
+              .addComponent(año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel8))
+          .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(40, 40, 40)
+        .addComponent(jButton1)
+        .addContainerGap(284, Short.MAX_VALUE))
     );
-
-    pack();
   }// </editor-fold>//GEN-END:initComponents
-
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-	if ("Nimbus".equals(info.getName())) {
-	  javax.swing.UIManager.setLookAndFeel(info.getClassName());
-	  break;
+public void conexion()
+{
+    if(connection !=null){
+		return;
 	}
-      }
-    } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(visita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(visita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(visita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(visita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
+	
+	String url ="jdbc:postgresql://localhost:5433/CONSOLIDACION";
+	String password ="ideafix";
+	try{
+	   Class.forName("org.postgresql.Driver");
+	   
+	   connection=DriverManager.getConnection(url,"postgres",password);
+	   
+	   if(connection!=null){
+		   System.out.println("Conectando a Base de Datos...");
+	   }
+	} catch (Exception e){
+		System.out.println("Problemas de Conexion");
+	}
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-	new visita().setVisible(true);
-      }
-    });
-  }
+}
+public void cierraConexion()
+    {
+        try
+        {
+            connection.close();
+	    System.out.println("conexion cerrada");
+        }catch(Exception e)
+        {
+            System.out.println("Problema para cerrar la Conexión a la base de datos ");
+        }
+    }
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    conexion();
+    
+ String nc=ncelular.getText();
+Object tip = tipo.getSelectedItem(); 
+  String ti = String.valueOf(tip);
+String pet = peticion.getText();
+String d = dia.getText();
+  String m = mes.getText();
+  String añ = año.getText();
+  String ho = hora.getText();
+  
+   try{
+     s=connection.createStatement();
+    int z=s.executeUpdate("INSERT INTO visita  values('"+nc+"','"+tip+"','"+pet+"','"+añ+"/"+m+"/"+d+"','"+ho+"')");
+	 if(z==1){
+	   System.out.println("Se agrego el registro de manera exitosa");
+	  }else{
+	   System.out.println("Ocurrio un problema al agregar el registro");
+	  }
+    
+	}catch (Exception e){
+		System.out.println("Error de conexion en en el registro");
+	}  
+
+
+// TODO add your handling code here:
+  }//GEN-LAST:event_jButton1ActionPerformed
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JTextField año;
+  private javax.swing.JTextField dia;
+  private javax.swing.JTextField hora;
+  private javax.swing.JButton jButton1;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
+  private javax.swing.JLabel jLabel6;
+  private javax.swing.JLabel jLabel7;
+  private javax.swing.JLabel jLabel8;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JTextField mes;
+  private javax.swing.JTextField ncelular;
+  private javax.swing.JTextArea peticion;
+  private javax.swing.JComboBox<String> tipo;
   // End of variables declaration//GEN-END:variables
 }

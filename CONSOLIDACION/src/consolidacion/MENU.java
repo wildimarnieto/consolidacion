@@ -38,6 +38,8 @@ public class MENU extends javax.swing.JPanel {
     jButton2 = new javax.swing.JButton();
     jButton3 = new javax.swing.JButton();
     jButton4 = new javax.swing.JButton();
+    jButton5 = new javax.swing.JButton();
+    jButton6 = new javax.swing.JButton();
 
     jButton1.setText("NUEVO");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,12 +70,33 @@ public class MENU extends javax.swing.JPanel {
       }
     });
 
+    jButton5.setText("reporte de nuevos");
+    jButton5.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton5ActionPerformed(evt);
+      }
+    });
+
+    jButton6.setText("VISITA");
+    jButton6.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton6ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addGap(0, 230, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(43, 43, 43)
+            .addComponent(jButton5))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(69, 69, 69)
+            .addComponent(jButton6)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
           .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -84,14 +107,21 @@ public class MENU extends javax.swing.JPanel {
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(27, 27, 27)
-        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(27, 27, 27)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(108, 108, 108)
+            .addComponent(jButton5)))
         .addGap(18, 18, 18)
-        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jButton6))
         .addGap(12, 12, 12)
         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
-        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
         .addGap(49, 49, 49))
     );
   }// </editor-fold>//GEN-END:initComponents
@@ -151,8 +181,8 @@ setLayout(new BorderLayout());
 	removeAll();
         updateUI();
         repaint();
-        SUPERVISOR supervisor = new SUPERVISOR();
-        add(supervisor, BorderLayout.CENTER);
+        SUPERVISOR S = new SUPERVISOR();
+        add(S, BorderLayout.CENTER);
         //pack();
  
 	
@@ -160,11 +190,43 @@ setLayout(new BorderLayout());
 	setSize(1000,1000); // TODO add your handling code here:
   }//GEN-LAST:event_jButton4ActionPerformed
 
+  private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    setLayout(new BorderLayout());
+
+	removeAll();
+        updateUI();
+        repaint();
+        contacto conta = new contacto();
+        add(conta, BorderLayout.CENTER);
+        //pack();
+ 
+	
+	setVisible(true);
+	setSize(1000,1000);// TODO add your handling code here:
+  }//GEN-LAST:event_jButton5ActionPerformed
+
+  private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    setLayout(new BorderLayout());
+
+	removeAll();
+        updateUI();
+        repaint();
+        visita visi = new visita();
+        add(visi, BorderLayout.CENTER);
+        //pack();
+ 
+	
+	setVisible(true);
+	setSize(1000,1000);// TODO add your handling code here:
+  }//GEN-LAST:event_jButton6ActionPerformed
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;
   private javax.swing.JButton jButton4;
+  private javax.swing.JButton jButton5;
+  private javax.swing.JButton jButton6;
   // End of variables declaration//GEN-END:variables
 }
