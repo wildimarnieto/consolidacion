@@ -30,6 +30,7 @@ private JTable table;
 private DefaultTableModel modelotabla;
 private Connection connection=null;
 private ResultSet rs= null;
+private ResultSet rs2= null;
 private Statement s=null;
   /**
    * Creates new form contacto
@@ -48,21 +49,21 @@ private Statement s=null;
   @SuppressWarnings("unchecked")
  
   
-  public void calcular(){
+  public long  calcular(String añ,String me,String di){
   
   final long MILLSECS_PER_DAY = 24 * 60 * 60 * 1000; //Milisegundos al día 
 java.util.Date hoy = new Date(); //Fecha de hoy 
      
-int año = 2017; int mes = 02; int dia = 01; //Fecha anterior 
+int año = Integer.parseInt (añ); int mes = Integer.parseInt (me); int dia = Integer.parseInt (di);
+
 Calendar calendar = new GregorianCalendar(año, mes-1, dia); 
 java.sql.Date fecha = new java.sql.Date(calendar.getTimeInMillis());
-
-long diferencia = ( hoy.getTime() - fecha.getTime() )/MILLSECS_PER_DAY; 
+ long diferencia = ( hoy.getTime() - fecha.getTime() )/MILLSECS_PER_DAY;
 System.out.println(diferencia); 
   
   
   
-  
+  return diferencia;
   }
   
   
@@ -81,15 +82,31 @@ System.out.println(diferencia);
   
    try{
 	   s=connection.createStatement();
-       rs = s.executeQuery("SELECT * FROM lider WHERE nombres='wildimar'");	   
-	 Object datos[] = new  Object[9]; 
-       
+       rs = s.executeQuery("SELECT * FROM nuevo");	   
+	 Object datos[] = new  Object[11]; 
+       String string="";
        while(rs.next()){
-	for(int i=0;i<9;i++){
-	datos[i]=rs.getObject(i+1);
-	
-	} 
+	 string +=rs.getString(1)+"\n";
+		   long numero= calcular(rs.getString(13).substring(0, 4),rs.getString(13).substring(5,7),rs.getString(13).substring(8, 10));
+		    
+	  
+		   //
+		   string="";
+		   if(numero>8){
+	datos[0]=rs.getObject(2);
+	datos[2]=rs.getObject(1);
+	datos[1]=numero;
 	modelotabla.addRow(datos);
+	rs2 = s.executeQuery("SELECT * FROM lider WHERE cedula='"+rs.getObject(1)+"'");	
+	datos[3]=rs2.getObject(2);
+	datos[4]=rs2.getObject(10);	   
+		   
+		   
+		   
+		   
+		   }
+	 
+	
 	   }
        rs.close();
 	}catch (Exception e){
@@ -166,7 +183,7 @@ public void conexion()
 	}
 }
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     calcular();
+     
     conexion();
   setFilas();
     

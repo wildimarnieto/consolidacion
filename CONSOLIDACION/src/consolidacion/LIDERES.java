@@ -936,8 +936,8 @@ String ca =asignado.getText();
 String d = "aux_super";
 Object car = cargo.getSelectedItem(); 
   String carg = String.valueOf(car);
-  if(carg=="SUPERVISOR"){d="super";}
-  if(carg=="CONSOLIDADOR"){d="consolidador";}
+  
+  
  try{
 	   s=connection.createStatement();
        rs = s.executeQuery("SELECT * FROM "+d+" WHERE cedula='"+ca+"'");

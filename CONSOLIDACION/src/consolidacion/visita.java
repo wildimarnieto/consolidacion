@@ -21,6 +21,7 @@ public class visita extends javax.swing.JPanel {
 private Connection connection=null;
 private ResultSet rs= null;
 private Statement s=null;
+
   /**
    * Creates new form visita
    */
@@ -209,6 +210,7 @@ String d = dia.getText();
   
    try{
      s=connection.createStatement();
+     
     int z=s.executeUpdate("INSERT INTO visita  values('"+nc+"','"+tip+"','"+pet+"','"+añ+"/"+m+"/"+d+"','"+ho+"')");
 	 if(z==1){
 	   System.out.println("Se agrego el registro de manera exitosa");
@@ -216,10 +218,17 @@ String d = dia.getText();
 	   System.out.println("Ocurrio un problema al agregar el registro");
 	  }
     
+	 int uc=s.executeUpdate("update nuevo set u_contacto='"+añ+"/"+m+"/"+d+"'"
+	    + " where n_celular='"+nc+"';");
+	 if(uc==1){
+	   System.out.println("Se agrego el registro de manera exitosa");
+	  }else{
+	   System.out.println("Ocurrio un problema al agregar el registro");
+	  }
 	}catch (Exception e){
 		System.out.println("Error de conexion en en el registro");
 	}  
-
+	
 
 // TODO add your handling code here:
   }//GEN-LAST:event_jButton1ActionPerformed
