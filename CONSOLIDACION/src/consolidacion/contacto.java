@@ -36,9 +36,11 @@ public class contacto extends javax.swing.JPanel {
   private ResultSet rs = null;
   private ResultSet rs2 = null;
   private ResultSet rs3 = null;
+  private ResultSet rs4 = null;
   private Statement s = null;
   private Statement s2 = null;
   private Statement s3 = null;
+  private Statement s4 = null;
   TableRowSorter trsfiltro;
 
   /**
@@ -130,6 +132,7 @@ public class contacto extends javax.swing.JPanel {
 
 	  String d = "";
 	  String d1 = "";
+	  String d2 = "";
 	  String pe = (String) rs.getObject(12);
 	  if (rs.getObject(12).equals("P. ESPIRITUAL")) {
 	    d = "lider";
@@ -202,6 +205,52 @@ public class contacto extends javax.swing.JPanel {
 		      }
 			datos[p] = rs3.getObject(2);
 			datos[p2] = rs3.getObject(10);
+			
+			
+			int y2 = 10;
+	      if (y2 == 10) {
+		if (!d1.equals("consolidador")) {
+		  System.out.println("ingreos al for diferente de consolidador");
+		  System.out.println("datos"+rs3.getObject(12)+rs3.getObject(11));
+		  if (!rs3.getObject(12).equals("") && !rs3.getObject(11).equals("")) {
+		    System.out.println("ingreso");
+
+		    
+		    if (rs3.getObject(12).equals("SUPERVISOR")) {
+		      d2 = "super";
+		    }
+		    if (rs3.getObject(12).equals("CONSOLIDADOR")) {
+		      d2 = "consolidador";
+		    }
+		    System.out.println(d1 + "  CEDULA  ");
+		    
+		    s4 = connection.createStatement();
+		    rs4 = s3.executeQuery("SELECT * FROM " + d2 + " WHERE cedula='" + rs2.getObject(11) + "'");
+		    while (rs3.next()) {
+
+		      p = 7;
+		      p2 = 8;
+		      
+		      if (d1 == "consolidador") {
+			p = 9;
+			p2 = 10;
+		      }
+			datos[p] = rs3.getObject(2);
+			datos[p2] = rs3.getObject(10);
+			
+			
+			
+			
+			
+		    }
+		  }
+
+		}
+
+	     //--->
+	      }
+			
+			
 		    }
 		  }
 
