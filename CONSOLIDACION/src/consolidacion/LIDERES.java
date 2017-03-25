@@ -936,7 +936,8 @@ String ca =asignado.getText();
 String d = "aux_super";
 Object car = cargo.getSelectedItem(); 
   String carg = String.valueOf(car);
-  
+  if(carg=="SUPERVISOR")d="super";
+  if(carg=="CONSOLIDADOR")d="CONSOLIDADOR";
   
  try{
 	   s=connection.createStatement();
